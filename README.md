@@ -237,6 +237,7 @@ Reset DB:
     cd frontend/worker-monitoring
     npm install
     npm run dev
+    front end available at http://localhost:5173/
 
 ------------------------------------------------------------------------
 
@@ -252,3 +253,7 @@ Reset DB:
 
 All endpoints return JSON. Swagger documentation available at:
 http://localhost:8000/docs
+
+the data display will be on 
+front end available at http://localhost:5173/
+
