@@ -1,0 +1,16 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/production.db:/app/production.db
+    environment:
+      - DATABASE_URL=sqlite:///./production.db
+
+  frontend:
+    build: ./frontend          # <-- changed from ./frontend/worker-monitoring
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend

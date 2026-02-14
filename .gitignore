@@ -1,0 +1,130 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+pythonenv.*
+
+# Virtual Environment
+.virtualenvs/
+
+# SQLite database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+logs/
+*.log
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Backend specific (if any)
+backend/__pycache__/
+backend/*.db
+backend/.env
+
+# Coverage
+htmlcov/
+.coverage
+.coverage.*
+.coverage.xml
+*.cover
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# poetry
+poetry.lock
+
+# pytest
+.pytest_cache/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# celery
+celerybeat-schedule
+
+# SageMath parsed files
+*.sage.py
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# pyenv
+.python-version
+
+# pdm
+.pdm.toml
+.pdm-python
+.pdm-build/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# SQLite
+*.db
+*.sqlite
+*.sqlite3
+
+# Docker
+docker-compose.override.yml
+*.pid
+*.seed
+*.pid.lock
+
+# Project specific
+production.db
