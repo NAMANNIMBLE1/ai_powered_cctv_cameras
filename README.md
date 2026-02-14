@@ -38,6 +38,19 @@ Schema includes: - workers - workstations - events
 Displays: - Factory-level summary metrics - Worker tables/cards -
 Workstation tables/cards - Filtering capabilities
 
+
+## 📸 Dashboard Screenshots
+
+### Worker Metrics View
+![Worker Metrics](assets/Screenshot%202026-02-14%20164203.png)
+
+### Workstation Metrics View
+![Workstation Metrics](assets/Screenshot%202026-02-14%20164215.png)
+
+### Factory Overview
+![Factory Overview](assets/Screenshot%202026-02-14%20164319.png)
+
+
 ------------------------------------------------------------------------
 
 # Project Structure
