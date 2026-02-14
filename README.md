@@ -199,7 +199,6 @@ Statistical tests (KS test)
 
 -   Regional backend per site
 -   Central aggregator
--   Tenant isolation
 -   Central analytics via Kafka + ClickHouse
 
 ------------------------------------------------------------------------
