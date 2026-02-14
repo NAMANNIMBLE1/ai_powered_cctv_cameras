@@ -229,3 +229,108 @@ docker compose up
 ``` bash
 sudo chown 1000:1000 backend/production.db
 ```
+
+
+
+# Metric Definitions & Assumptions
+
+## Shift Definition
+
+-   Shift start: first event timestamp
+-   Shift end: last event timestamp + 1 hour
+-   If no events → metrics return zero
+
+## State Durations
+
+Duration = time until next event for same worker. If no next event →
+lasts until shift end.
+
+## Worker-Level Metrics
+
+  Metric                 Formula
+  ---------------------- ---------------------------
+  Total active time      Sum of working durations
+  Total idle time        Sum of idle durations
+  Total absent time      Sum of absent durations
+  Utilization %          (active / total) \* 100
+  Total units produced   Sum(product_count.count)
+  Units per hour         total_units / shift_hours
+
+## Workstation-Level Metrics
+
+  Metric            Formula
+  ----------------- ------------------------------------
+  Occupancy time    Sum of working durations
+  Utilization %     (occupancy / shift_seconds) \* 100
+  Total units       Sum(product_count.count)
+  Throughput rate   total_units / shift_hours
+
+## Factory-Level Metrics
+
+  Metric                    Formula
+  ------------------------- ---------------------------------
+  Total productive time     Sum of all workers' active time
+  Total production count    Sum of all workers' units
+  Average production rate   Mean(units per hour)
+  Average utilization       Mean(worker utilization %)
+
+------------------------------------------------------------------------
+
+# Handling Edge Cases
+
+## Intermittent Connectivity
+
+-   Cameras buffer events locally
+-   Retry with exponential backoff
+-   Store-and-forward recommended
+
+## Duplicate Events
+
+Duplicate detection based on: (timestamp, worker_id, workstation_id,
+event_type, count)
+
+## Out-of-Order Timestamps
+
+Events are sorted during metric computation.
+
+------------------------------------------------------------------------
+
+# Model Versioning, Drift & Retraining
+
+## Model Versioning
+
+Add `model_version` column in events table. Create `model_deployments`
+table.
+
+## Detecting Drift
+
+Monitor: - Confidence score distribution - Event type ratios -
+Statistical tests (KS test)
+
+## Retraining Strategy
+
+-   Alert on drift
+-   Trigger retraining
+-   Shadow deploy
+-   A/B test before rollout
+
+------------------------------------------------------------------------
+
+# Scaling Considerations
+
+## From 5 → 100+ Cameras
+
+  Layer       Recommendation
+  ----------- -------------------------------
+  Database    PostgreSQL / TimescaleDB
+  API         Load balancer (Nginx)
+  Ingestion   Kafka / RabbitMQ
+  Metrics     Background jobs + Redis cache
+
+## Multi-Site
+
+-   Regional backend per site
+-   Central aggregator
+-   Tenant isolation
+-   Central analytics via Kafka + ClickHouse
+
