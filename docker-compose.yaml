@@ -1,6 +1,24 @@
+# services:
+#   backend:
+#     build: ./backend
+#     ports:
+#       - "8000:8000"
+#     volumes:
+#       - ./backend/production.db:/app/production.db
+#     environment:
+#       - DATABASE_URL=sqlite:///./production.db
+
+#   frontend:
+#     build: ./frontend          # <-- changed from ./frontend/worker-monitoring
+#     ports:
+#       - "5173:80"
+#     depends_on:
+#       - backend
+
+
 services:
   backend:
-    build: ./backend
+    image: namannimble2627/worker-monitoring-backend:latest
     ports:
       - "8000:8000"
     volumes:
@@ -9,7 +27,7 @@ services:
       - DATABASE_URL=sqlite:///./production.db
 
   frontend:
-    build: ./frontend          # <-- changed from ./frontend/worker-monitoring
+    image: namannimble2627/worker-monitoring-frontend:latest
     ports:
       - "5173:80"
     depends_on:
